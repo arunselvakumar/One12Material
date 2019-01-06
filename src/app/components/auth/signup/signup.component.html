@@ -14,7 +14,9 @@
       <mat-error>Minimum Length is 6 Characters</mat-error>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <mat-checkbox required ngModel name="isAgreed">I Agree to Terms & Conditions</mat-checkbox>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="f.invalid">Submit</button>
   </form>
 
 </section>
