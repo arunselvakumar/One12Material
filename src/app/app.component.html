@@ -1,7 +1,11 @@
 <mat-sidenav-container>
 
   <mat-sidenav position="end" mode="over" #sidenav role="navigation">
-    <p>I am a Side Nav</p>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/signup" (click)="sidenav.close()">Sign Up</a>
+      <a mat-list-item routerLink="/contributers" (click)="sidenav.close()">Contributers</a>
+      <a mat-list-item routerLink="/blog" (click)="sidenav.close()">Blog</a>
+    </mat-nav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
@@ -12,14 +16,14 @@
 
       <section fxFlex fxLayout fxLayoutAlign="flex-end">
 
-        <ul fxLayout fxLayoutGap="1rem" class="navigation-items">
+        <ul fxLayout fxLayoutGap="1rem" class="navigation-items" fxHide fxShow.gt-xs>
           <li><a routerLink="/signup">Sign Up</a></li>
           <li><a routerLink="/contributers">Contributers</a></li>
           <li><a routerLink="/blog">Blog</a></li>
         </ul>
 
         <div>
-          <button mat-icon-button (click)="sidenav.toggle()">
+          <button mat-icon-button (click)="sidenav.toggle()" fxHide.gt-xs>
             <mat-icon>menu</mat-icon>
           </button>
         </div>
