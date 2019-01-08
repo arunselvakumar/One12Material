@@ -13,6 +13,7 @@ import { ContributerComponent } from './components/contributers/contributer.comp
 import { FeedbackComponent } from './components/feedback/feedback.component';
 import { MainComponent } from './components/main/main.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
+import { HeaderComponent } from './components/navigation/header/header.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { SignupComponent } from './components/auth/signup/signup.component';
     ContributerComponent,
     FeedbackComponent,
     MainComponent,
-    SignupComponent
+    SignupComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
