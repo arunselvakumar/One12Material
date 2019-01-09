@@ -14,6 +14,7 @@ import { FeedbackComponent } from './components/feedback/feedback.component';
 import { MainComponent } from './components/main/main.component';
 import { SignupComponent } from './components/auth/signup/signup.component';
 import { HeaderComponent } from './components/navigation/header/header.component';
+import { SidenavListComponent } from './components/navigation/sidenav-list/sidenav-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HeaderComponent } from './components/navigation/header/header.component
     FeedbackComponent,
     MainComponent,
     SignupComponent,
-    HeaderComponent
+    HeaderComponent,
+    SidenavListComponent
   ],
   imports: [
     BrowserModule,

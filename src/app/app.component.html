@@ -1,35 +1,11 @@
 <mat-sidenav-container>
 
   <mat-sidenav position="end" mode="over" #sidenav role="navigation">
-    <mat-nav-list>
-      <a mat-list-item routerLink="/signup" (click)="sidenav.close()">Sign Up</a>
-      <a mat-list-item routerLink="/contributers" (click)="sidenav.close()">Contributers</a>
-      <a mat-list-item routerLink="/blog" (click)="sidenav.close()">Blog</a>
-    </mat-nav-list>
+    <app-sidenav-list (sideNavClose)="sidenav.close()"></app-sidenav-list>
   </mat-sidenav>
 
   <mat-sidenav-content>
-    <mat-toolbar color="primary">
-      <div>
-        <a routerLink="/"> One 12 </a>
-      </div>
-
-      <section fxFlex fxLayout fxLayoutAlign="flex-end">
-
-        <ul fxLayout fxLayoutGap="1rem" class="navigation-items" fxHide.xs fxShow.gt-xs>
-          <li><a routerLink="/signup">Sign Up</a></li>
-          <li><a routerLink="/contributers">Contributers</a></li>
-          <li><a routerLink="/blog">Blog</a></li>
-        </ul>
-
-        <div>
-          <button mat-icon-button (click)="sidenav.toggle()" fxHide.gt-xs>
-            <mat-icon>menu</mat-icon>
-          </button>
-        </div>
-      </section>
-
-    </mat-toolbar>
+    <app-header (sideNavToggle)="sidenav.toggle()"></app-header>
 
     <main>
       <router-outlet></router-outlet>

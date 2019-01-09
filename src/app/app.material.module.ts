@@ -7,7 +7,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatSidenavModule,
+  MatSidenavModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -20,7 +20,8 @@ import {
     MatCheckboxModule,
     MatSidenavModule,
     MatToolbarModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule
   ],
   exports: [
     MatButtonModule,
@@ -30,7 +31,8 @@ import {
     MatCheckboxModule,
     MatToolbarModule,
     MatSidenavModule,
-    MatListModule
+    MatListModule,
+    MatTabsModule
   ]
 })
 export class AppMaterialModule { }
