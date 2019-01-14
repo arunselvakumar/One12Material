@@ -18,6 +18,7 @@ import { SidenavListComponent } from './components/navigation/sidenav-list/siden
 import { AppFirebaseModule } from './modules/app-firebase.module';
 
 import { AuthService } from './services/auth.service';
+import { LoginComponent } from './components/auth/login/login.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { AuthService } from './services/auth.service';
     MainComponent,
     SignupComponent,
     HeaderComponent,
-    SidenavListComponent
+    SidenavListComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

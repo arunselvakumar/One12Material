@@ -1,20 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-
-import { AuthService } from '../../../services/auth.service';
+import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
+import {NgForm} from '@angular/forms';
 
 @Component({
-  selector: 'app-signup',
-  templateUrl: './signup.component.html',
-  styleUrls: ['./signup.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class LoginComponent implements OnInit {
 
   private userAuthorizationSubscription: Subscription;
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -37,7 +36,7 @@ export class SignupComponent implements OnInit {
       password: form.value.password
     };
 
-    this.authService.registerUser(user);
+    this.authService.signInUser(user);
 
   }
 
