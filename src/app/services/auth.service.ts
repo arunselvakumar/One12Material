@@ -1,62 +1,49 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { AngularFireAuth } from '@angular/fire/auth';
+
+import { UserModel } from '../models/user.model';
+import * as firebase from 'firebase';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private isAuthenticated = false;
+  user: Observable<firebase.User>;
 
-  constructor(private angularFireAuth: AngularFireAuth) { }
-
-  initAuth() {
-    this.angularFireAuth.authState.subscribe(user => {
-      if(user) {
-
-      }
-      else {
-
-      }
-    })
+  constructor(private angularFireAuth: AngularFireAuth) {
+    this.user = this.angularFireAuth.authState;
   }
 
-  registerUser() {
+  registerUser(user: UserModel) {
+
     this.angularFireAuth.auth
-        .createUserWithEmailAndPassword('b.arunselvakumar@gmail.com', 'helloworld')
+        .createUserWithEmailAndPassword(user.email, user.password)
         .then(result => {
-          this.authenticatedSuccess();
           console.log(result);
         })
         .catch(error => {
           console.log(error);
         });
+
   }
 
-  signInUser() {
-    console.log('error');
+  signInUser(user: UserModel) {
 
     this.angularFireAuth.auth
-      .signInWithEmailAndPassword('b.arunselvakumar@gmail.com', 'hi')
+      .signInWithEmailAndPassword(user.email, user.password)
       .then(result => {
-        this.authenticatedSuccess();
         console.log(result);
       })
       .catch(error => {
         console.log(error);
       });
+
   }
 
   logOutUser() {
     this.angularFireAuth.auth.signOut();
-    this.isAuthenticated = false;
   }
 
-  isUserAuthenticated() {
-    return this.isAuthenticated;
-  }
-
-  authenticatedSuccess() {
-    this.isAuthenticated = true;
-  }
 }

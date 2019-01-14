@@ -1,6 +1,6 @@
 <section>
 
-  <h1>Sign Up</h1>
+  <h1>Login</h1>
 
   <form autocomplete="off" fxLayout="column" fxLayoutAlign="center center" #f="ngForm" (ngSubmit)="onSubmit(f)">
 
@@ -15,8 +15,6 @@
       <mat-hint align="end"> {{ passwordInput.value?.length }} / 6</mat-hint>
       <mat-error>Minimum Length is 6 Characters</mat-error>
     </mat-form-field>
-
-    <mat-checkbox required ngModel name="isAgreed">I Agree to Terms & Conditions</mat-checkbox>
 
     <button mat-raised-button color="primary" type="submit" [disabled]="f.invalid">Submit</button>
   </form>
