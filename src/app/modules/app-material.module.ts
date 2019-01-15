@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
 import {
   MatButtonModule,
@@ -7,7 +7,8 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatSidenavModule, MatTabsModule,
+  MatSidenavModule,
+  MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 
