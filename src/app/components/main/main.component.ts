@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
@@ -8,22 +8,24 @@ import {Subscription} from 'rxjs';
   templateUrl: './main.component.html',
   styleUrls: ['./main.component.scss']
 })
-export class MainComponent implements OnInit {
+export class MainComponent implements OnInit, OnDestroy {
 
   private userAuthorizationSubscription: Subscription;
 
   constructor(private authService: AuthService, private router: Router) {
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.userAuthorizationSubscription = this.authService.user.subscribe(user => {
       if (!user) {
-
-        this.router
-          .navigate(['/login'])
-          .finally(() => this.userAuthorizationSubscription.unsubscribe());
+        this.router.navigate(['/login']);
       }
     });
   }
 
+  ngOnDestroy(): void {
+    if (this.userAuthorizationSubscription) {
+      this.userAuthorizationSubscription.unsubscribe();
+    }
+  }
 }

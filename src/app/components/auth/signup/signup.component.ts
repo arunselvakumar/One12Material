@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {NgForm} from '@angular/forms';
 
-import { AuthService } from '../../../services/auth.service';
+import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 
@@ -10,7 +10,7 @@ import {Subscription} from 'rxjs';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.scss']
 })
-export class SignupComponent implements OnInit {
+export class SignupComponent implements OnInit, OnDestroy {
 
   private userAuthorizationSubscription: Subscription;
 
@@ -23,10 +23,15 @@ export class SignupComponent implements OnInit {
 
         if (user) {
           this.router.navigate(['/']);
-          this.userAuthorizationSubscription.unsubscribe();
         }
       });
 
+  }
+
+  ngOnDestroy(): void {
+    if (this.userAuthorizationSubscription) {
+      this.userAuthorizationSubscription.unsubscribe();
+    }
   }
 
   onSubmit(form: NgForm) {

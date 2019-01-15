@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../../../services/auth.service';
 import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
@@ -9,7 +9,7 @@ import {NgForm} from '@angular/forms';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, OnDestroy {
 
   private userAuthorizationSubscription: Subscription;
 
@@ -22,10 +22,15 @@ export class LoginComponent implements OnInit {
 
         if (user) {
           this.router.navigate(['/']);
-          this.userAuthorizationSubscription.unsubscribe();
         }
       });
 
+  }
+
+  ngOnDestroy(): void {
+    if (this.userAuthorizationSubscription) {
+      this.userAuthorizationSubscription.unsubscribe();
+    }
   }
 
   onSubmit(form: NgForm) {
