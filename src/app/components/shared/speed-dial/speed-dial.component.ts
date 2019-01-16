@@ -30,8 +30,8 @@ export class SpeedDialComponent implements OnInit {
     },
     {
       icon: 'wallpaper',
-      toolTip: 'Upload Meme',
-      context: 'upload_meme'
+      toolTip: 'Upload Story',
+      context: 'upload_story'
     }
   ];
 
@@ -60,12 +60,12 @@ export class SpeedDialComponent implements OnInit {
   }
 
   onButtonClick(context: string) {
-    if (context === 'upload_meme') {
+    if (context === 'upload_story') {
       this.hideItems();
 
       const dialogRef = this.dialog.open(UploadMemeComponent, {
-        height: '400px',
-        width: '600px',
+        height: 'auto',
+        width: '800px',
       });
     }
   }
