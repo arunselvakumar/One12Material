@@ -2,10 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MatChipInputEvent, MatDialogRef} from '@angular/material';
 import {NgForm} from '@angular/forms';
 import {COMMA, ENTER} from '@angular/cdk/keycodes';
-import {AngularFireStorage} from '@angular/fire/storage';
 import {AuthService} from '../../../../services/auth/auth.service';
-import {Observable} from 'rxjs';
-import {finalize} from 'rxjs/operators';
 import {PostService} from '../../../../services/post/post.service';
 
 @Component({
@@ -14,16 +11,12 @@ import {PostService} from '../../../../services/post/post.service';
 })
 export class UploadMemeComponent implements OnInit {
 
-  private downloadURL: Observable<string>;
-
-  uploadPercent: Observable<number>;
   filePath: string;
   selectedFile: File;
   readonly separatorKeysCodes: number[] = [ENTER, COMMA];
   tags: string[] = [];
 
   constructor(public dialogRef: MatDialogRef<UploadMemeComponent>,
-              private fireStorage: AngularFireStorage,
               private userAuthorizationService: AuthService,
               private postService: PostService) {
   }
@@ -36,35 +29,21 @@ export class UploadMemeComponent implements OnInit {
   }
 
   onSubmit(ngform: NgForm) {
-    const currentUser = this.userAuthorizationService.getCurrentUser();
-    if (currentUser) {
 
-      const filePath = currentUser.uid + '/stories/' + this.selectedFile.name;
-      const fileRef = this.fireStorage.ref(filePath);
-      const uploadTask = this.fireStorage.upload(filePath, this.selectedFile);
+    const post = {
+      id: null,
+      content: null,
+      title: ngform.value.title,
+      source: ngform.value.source,
+      description: ngform.value.description,
+      tags: this.tags,
+      postedBy: null,
+      isDeleted: false
+    };
 
-      this.uploadPercent = uploadTask.percentageChanges();
+    this.postService.uploadPost(this.selectedFile, post);
 
-      uploadTask.snapshotChanges().pipe(finalize(() => {
-        this.downloadURL = fileRef.getDownloadURL();
-        this.downloadURL.subscribe(value => {
-          this.postService.createPost({
-            id: null,
-            content: value,
-            title: ngform.value.title,
-            source: ngform.value.source,
-            description: ngform.value.description,
-            tags: this.tags,
-            postedBy: currentUser.uid,
-            isDeleted: false
-          }).then(value1 => {
-            console.log(value1);
-            this.closeDialog();
-          });
-        });
-      }))
-        .subscribe();
-    }
+    this.closeDialog();
   }
 
   onFileSelected(event) {

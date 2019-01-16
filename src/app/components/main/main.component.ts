@@ -10,6 +10,7 @@ import {PostService} from '../../services/post/post.service';
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent implements OnInit, OnDestroy {
+  posts: any[] = [];
 
   private userAuthorizationSubscription: Subscription;
 
@@ -21,7 +22,9 @@ export class MainComponent implements OnInit, OnDestroy {
       if (!user) {
         this.router.navigate(['/login']);
       } else {
-        this.postService.getAllPost().then(value => console.log(value));
+        this.postService.getAllPosts().subscribe(data => {
+          this.posts = data.slice();
+        });
       }
     });
   }
