@@ -20,6 +20,7 @@ import {AppFirebaseModule} from './modules/app-firebase.module';
 import {AuthService} from './services/auth.service';
 import {LoginComponent} from './components/auth/login/login.component';
 import {SpeedDialComponent} from './components/shared/speed-dial/speed-dial.component';
+import {UploadMemeComponent} from './components/main/dialogs/upload-meme/upload-meme.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import {SpeedDialComponent} from './components/shared/speed-dial/speed-dial.comp
     HeaderComponent,
     SidenavListComponent,
     LoginComponent,
-    SpeedDialComponent
+    SpeedDialComponent,
+    UploadMemeComponent
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import {SpeedDialComponent} from './components/shared/speed-dial/speed-dial.comp
     AppFirebaseModule
   ],
   providers: [AuthService],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [UploadMemeComponent]
 })
 export class AppModule { }
