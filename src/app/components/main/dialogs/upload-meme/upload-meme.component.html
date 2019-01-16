@@ -1,34 +1,38 @@
 <section class="upload-meme-wrapper">
 
   <!-- Dialog Title -->
-  <h2 mat-dialog-title>Upload Meme</h2>
+  <h2 mat-dialog-title>Upload Story</h2>
 
   <!-- Dialog Content -->
   <mat-dialog-content>
 
     <form autocomplete="off" fxLayout="column" #f="ngForm" (ngSubmit)="onSubmit(f)">
 
-      <mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Title</mat-label>
         <input type="text" matInput placeholder="Title" ngModel name="title" required #titleInput=ngModel>
         <mat-error *ngIf="titleInput.hasError('required')">Title is a mandatory field</mat-error>
         <mat-hint>Enter the Post Title</mat-hint>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Description</mat-label>
         <input type="text" matInput placeholder="Description" ngModel name="description">
         <mat-hint>Enter the Post Description</mat-hint>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Source</mat-label>
         <input type="text" matInput placeholder="Source" ngModel name="source">
         <mat-hint>Provide the Story Source</mat-hint>
       </mat-form-field>
 
-      <mat-form-field>
+      <mat-form-field appearance="outline">
+        <mat-label>Tags</mat-label>
         <mat-chip-list #tagsList>
           <mat-chip *ngFor="let tag of tags" [selectable]="true"
                     [removable]="true" (removed)="removeTag(tag)">
-            {{tag.name}}
+            {{tag}}
             <mat-icon matChipRemove>cancel</mat-icon>
           </mat-chip>
           <input placeholder="Tags"
@@ -37,20 +41,28 @@
                  [matChipInputAddOnBlur]="true"
                  (matChipInputTokenEnd)="addTag($event)">
         </mat-chip-list>
+        <mat-hint>Provide Tags for the Story</mat-hint>
       </mat-form-field>
 
-      <mat-checkbox required ngModel name="isAnonymous">Anonymous Post?</mat-checkbox>
+      <mat-form-field appearance="outline">
+        <mat-label (click)="fileInput.click()">Upload Meme</mat-label>
+        <input type="text" matInput placeholder="Click to Upload Meme" (click)="fileInput.click()"
+               [(ngModel)]="filePath" [ngModelOptions]="{standalone: true}">
+        <mat-hint>Select a file to upload MeMe</mat-hint>
+      </mat-form-field>
 
-      <button mat-raised-button color="primary" type="submit" [disabled]="f.invalid">Submit</button>
+      <input hidden type="file" #fileInput (change)="onFileSelected($event)">
+      <button hidden type="submit" #formSubmit>Submit</button>
+
     </form>
 
   </mat-dialog-content>
 
   <!-- Dialog Actions -->
-  <mat-dialog-actions>
-    <button mat-button mat-dialog-close>No</button>
+  <mat-dialog-actions align="end">
+    <button mat-button color="accent" (click)="formSubmit.click()">Upload</button>
     <!-- The mat-dialog-close directive optionally accepts a value as a result for the dialog. -->
-    <button mat-button [mat-dialog-close]="true">Yes</button>
+    <button mat-button mat-dialog-close>Cancel</button>
   </mat-dialog-actions>
 
 </section>

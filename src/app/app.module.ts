@@ -17,10 +17,12 @@ import {HeaderComponent} from './components/navigation/header/header.component';
 import {SidenavListComponent} from './components/navigation/sidenav-list/sidenav-list.component';
 import {AppFirebaseModule} from './modules/app-firebase.module';
 
-import {AuthService} from './services/auth.service';
+import {AuthService} from './services/auth/auth.service';
 import {LoginComponent} from './components/auth/login/login.component';
 import {SpeedDialComponent} from './components/shared/speed-dial/speed-dial.component';
 import {UploadMemeComponent} from './components/main/dialogs/upload-meme/upload-meme.component';
+import {PostService} from './services/post/post.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -38,6 +40,7 @@ import {UploadMemeComponent} from './components/main/dialogs/upload-meme/upload-
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     AppMaterialModule,
@@ -45,7 +48,7 @@ import {UploadMemeComponent} from './components/main/dialogs/upload-meme/upload-
     FormsModule,
     AppFirebaseModule
   ],
-  providers: [AuthService],
+  providers: [AuthService, PostService],
   bootstrap: [AppComponent],
   entryComponents: [UploadMemeComponent]
 })
