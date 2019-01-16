@@ -4,6 +4,7 @@ import {
   MAT_CHIPS_DEFAULT_OPTIONS,
   MAT_DIALOG_DEFAULT_OPTIONS,
   MatButtonModule,
+  MatCardModule,
   MatCheckboxModule,
   MatChipsModule,
   MatDialogModule,
@@ -12,6 +13,7 @@ import {
   MatInputModule,
   MatListModule,
   MatSidenavModule,
+  MatSnackBarModule,
   MatTabsModule,
   MatToolbarModule,
   MatTooltipModule
@@ -31,7 +33,9 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
     MatTabsModule,
     MatTooltipModule,
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSnackBarModule,
+    MatCardModule
   ],
   exports: [
     MatButtonModule,
@@ -45,7 +49,9 @@ import {COMMA, ENTER} from '@angular/cdk/keycodes';
     MatTabsModule,
     MatTooltipModule,
     MatDialogModule,
-    MatChipsModule
+    MatChipsModule,
+    MatSnackBarModule,
+    MatCardModule
   ],
   providers: [
     {provide: MAT_DIALOG_DEFAULT_OPTIONS, useValue: {hasBackdrop: true}},
