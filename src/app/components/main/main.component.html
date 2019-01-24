@@ -6,10 +6,10 @@
         Home
       </ng-template>
 
-      <section gdColumns.xs="auto" gdColumns.gt-xs="auto 320px" gdColumns.gt-lg="auto 360px">
-        <section class="timeline-content-wrapper" gdColumns.gt-lg="auto auto auto" gdColumns.gt-md="auto auto"
-                 gdColumns.xs="auto" gdGap="1rem">
-          <div *ngFor="let post of posts">
+      <section gdColumns.gt-lg="auto 360px" gdColumns.gt-md="auto 320px" gdColumns.xs="auto">
+        <section class="timeline-content-wrapper" gdColumns.gt-lg="1fr 1fr 1fr 1fr" gdColumns.gt-md="1fr 1fr 1fr"
+                 gdColumns.xs="1fr" gdGap="1rem">
+          <article *ngFor="let post of posts">
             <mat-card>
               <mat-card-header>
                 <div class="example-header-image" mat-card-avatar></div>
@@ -24,7 +24,7 @@
                 </p>
               </mat-card-content>
               <mat-card-actions>
-                <button color="accent" mat-icon-button>
+                <button (click)="onLikeSelected(post.id)" color="accent" mat-icon-button>
                   <mat-icon>favorite_border</mat-icon>
                 </button>
                 <button color="accent" mat-icon-button>
@@ -39,7 +39,7 @@
                 </button>
               </mat-card-actions>
             </mat-card>
-          </div>
+          </article>
         </section>
         <section class="current-tags-wrapper" fxhide fxShow.gt-sm>
           <mat-card>

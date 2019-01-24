@@ -60,6 +60,14 @@ export class PostService extends ApiBaseService {
     this.postsCollectionRef.doc(id).update({idDeleted: true});
   }
 
+  likePost(id: string) {
+    const currentUser = this.userAuthorizationService.getCurrentUser();
+
+    if (currentUser) {
+      // this.postsCollectionRef.doc(id).update()
+    }
+  }
+
   getAllPosts(): Observable<any[]> {
     return this.postsCollectionRef.snapshotChanges().pipe(map(changes => {
       return changes.map(c => ({...c.payload.doc.data(), id: c.payload.doc.id}));
