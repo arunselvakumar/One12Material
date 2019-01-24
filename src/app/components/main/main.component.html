@@ -7,24 +7,36 @@
       </ng-template>
 
       <section gdColumns.xs="auto" gdColumns.gt-xs="auto 320px" gdColumns.gt-lg="auto 360px">
-        <section class="timeline-content-wrapper" gdColumns.gt-lg="auto auto auto auto" gdColumns.lg="auto auto auto"
-                 gdColumns.md="auto auto" gdColumns.xs="auto" gdGap="1rem">
+        <section class="timeline-content-wrapper" gdColumns.gt-lg="auto auto auto" gdColumns.gt-md="auto auto"
+                 gdColumns.xs="auto" gdGap="1rem">
           <div *ngFor="let post of posts">
-            <mat-card class="example-card">
+            <mat-card>
               <mat-card-header>
                 <div class="example-header-image" mat-card-avatar></div>
                 <mat-card-title>{{post.title}}</mat-card-title>
                 <mat-card-subtitle>{{post.source}}</mat-card-subtitle>
               </mat-card-header>
-              <img mat-card-image src="{{post.content}}">
+              <!--<img mat-card-image src="{{post.content}}">-->
+              <img mat-card-image src="https://material.angular.io/assets/img/examples/shiba2.jpg">
               <mat-card-content>
                 <p>
                   {{post.description}}
                 </p>
               </mat-card-content>
               <mat-card-actions>
-                <button mat-button>LIKE</button>
-                <button mat-button>SHARE</button>
+                <button color="accent" mat-icon-button>
+                  <mat-icon>favorite_border</mat-icon>
+                </button>
+                <button color="accent" mat-icon-button>
+                  <mat-icon>bookmarks</mat-icon>
+                </button>
+                <button color="accent" mat-icon-button>
+                  <mat-icon>add_comment</mat-icon>
+                </button>
+                <div fxFlex></div>
+                <button color="primary" mat-icon-button>
+                  <mat-icon>share</mat-icon>
+                </button>
               </mat-card-actions>
             </mat-card>
           </div>
