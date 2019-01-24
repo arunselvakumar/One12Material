@@ -1,5 +1,23 @@
-.example-card {
-  max-width: 400px;
+.tab-icon {
+  margin: 1rem;
+}
+
+.timeline-content-wrapper {
+  padding: 1rem;
+}
+
+.current-tags-wrapper {
+  padding: 1rem 1rem 1rem 0rem;
+}
+
+mat-tab-group {
+  mat-tab {
+
+    .timeline-content-wrapper {
+      padding: 1rem;
+    }
+
+  }
 }
 
 .example-header-image {
