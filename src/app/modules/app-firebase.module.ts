@@ -9,7 +9,7 @@ import {AngularFireStorageModule, StorageBucket} from '@angular/fire/storage';
 @NgModule({
   imports: [
     AngularFireModule.initializeApp(environment.fireBaseConfig),
-    AngularFirestoreModule,
+    AngularFirestoreModule.enablePersistence(),
     AngularFireAuthModule,
     AngularFireStorageModule
   ],

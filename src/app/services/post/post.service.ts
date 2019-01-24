@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {ApiBaseService} from '../_base/api-base.service';
 import {PostModel} from '../../models/post/post.model';
-import {AngularFirestore, AngularFirestoreCollection, DocumentReference} from '@angular/fire/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/firestore';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {AuthService} from '../auth/auth.service';
 import {finalize, map} from 'rxjs/operators';
@@ -13,7 +13,7 @@ import {Observable} from 'rxjs';
 })
 export class PostService extends ApiBaseService {
 
-  private postsCollection: AngularFirestoreCollection<PostModel>;
+  private postsCollectionRef: AngularFirestoreCollection<PostModel>;
 
   constructor(
     private firestore: AngularFirestore,
@@ -22,11 +22,12 @@ export class PostService extends ApiBaseService {
     public snackBar: MatSnackBar) {
 
     super();
-    this.postsCollection = this.firestore.collection<PostModel>('posts');
+    this.postsCollectionRef = this.firestore.collection<PostModel>('posts');
 
   }
 
   uploadPost(selectedFile: File, post: PostModel) {
+
     const currentUser = this.userAuthorizationService.getCurrentUser();
 
     if (currentUser) {
@@ -51,12 +52,16 @@ export class PostService extends ApiBaseService {
     }
   }
 
-  createPost(post: PostModel): Promise<DocumentReference> {
-    return this.postsCollection.add(post);
+  createPost(post: PostModel) {
+    this.postsCollectionRef.add(post);
+  }
+
+  deletePost(id: string) {
+    this.postsCollectionRef.doc(id).update({idDeleted: true});
   }
 
   getAllPosts(): Observable<any[]> {
-    return this.postsCollection.snapshotChanges().pipe(map(changes => {
+    return this.postsCollectionRef.snapshotChanges().pipe(map(changes => {
       return changes.map(c => ({...c.payload.doc.data(), id: c.payload.doc.id}));
     }));
   }
